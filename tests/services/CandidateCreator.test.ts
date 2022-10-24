@@ -8,33 +8,23 @@ describe("Candidate Creator Test Suite", () => {
     const candidateCreator = new CandidateCreator(logger, candidateCreatorRepositoryProvider);
 
     it("should throw because email is invalid", async () => {
-        expect(async () => {
-            console.log(1)
-            await candidateCreator.create("avivgmail.com", "Aviv", "Ben-Yosef", "www.mycvhost.com");
-        }).toThrow();
+        expect(await candidateCreator.create("avivgmail.com", "Aviv", "Ben-Yosef", "www.mycvhost.com")).rejects.toThrow()
     });
 
     it("should throw because first name is invalid", async () => {
-        expect(async () => {
-            await candidateCreator.create("aviv@gmail.com", "", "Ben-Yosef", "www.mycvhost.com");
-        }).toThrow();
+        expect(
+            await candidateCreator.create("aviv@gmail.com", "", "Ben-Yosef", "www.mycvhost.com")).rejects.toThrow()
     });
 
     it("should throw because last name is invalid", async () => {
-        expect(async () => {
-            await candidateCreator.create("aviv@gmail.com", "Aviv", "", "www.mycvhost.com");
-        }).toThrow()
+        expect(await candidateCreator.create("aviv@gmail.com", "Aviv", "", "www.mycvhost.com")).rejects.toThrow()
     });
 
     it("should throw because CV URL is invalid", async () => {
-        expect(async () => {
-            await candidateCreator.create("aviv@gmail.com", "Aviv", "Ben-Yosef", "www#m#y#cvhost.com");
-        }).toThrow();
+        expect(await candidateCreator.create("aviv@gmail.com", "Aviv", "Ben-Yosef", "www#m#y#cvhost.com")).rejects.toThrow()
     });
 
-    it.only("should create a record", async () => {
-        expect(async () => {
-            await candidateCreator.create("aviv@interactech.com", "Aviv", "Ben-Yosef", "https://stackoverflow.com/");
-        }).not.toThrow();
+    it("should create a record", async () => {
+        expect(await candidateCreator.create("aviv@interactech.com", "Aviv", "Ben-Yosef", "https://stackoverflow.com/")).not.toThrow()
     })
 })
