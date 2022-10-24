@@ -11,13 +11,13 @@ class PositionCreator implements IPositionCreator {
         this._logger = logger;
     }
     async create(name: string, description: string): Promise<void> {
-        if (name.length < 5) {
+        if (name.length < 1) {
             const msg = "Name is not valid!";
             this._logger.error({}, msg)
             throw msg;
         }
         
-        if (description.length < 5) {
+        if (description.length < 1) {
             const msg = "Name is not valid!";
             this._logger.error({}, msg)
             throw msg;

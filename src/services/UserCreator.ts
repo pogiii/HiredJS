@@ -1,9 +1,10 @@
 import { IUserCreator } from "../contracts/interfaces/IUserCreator";
 import { IUserCreatorRepositoryProvider } from "../contracts/interfaces/IUserCreatorRepositoryProvider";
-import { Logger } from "pino";
+import pino, { Logger } from "pino";
 import { validateEmail } from "../scripts/validateEmail";
 import { createHashFromString } from "../scripts/createHashFromString"
 import { Hash } from "crypto";
+import { UserCreatorRepositoryProvider } from "../providers/database/prisma/UserCreatorRepositoryProvider";
 class UserCreator implements IUserCreator {
 
     private readonly _userCreatorRepositoryProvider: IUserCreatorRepositoryProvider;

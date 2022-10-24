@@ -3,7 +3,7 @@ import { BaseRepositoryProvider } from "./BaseRepositoryProvider";
 
 class CandidateCreatorRepositoryProvider extends BaseRepositoryProvider implements ICandidateCreatorRepositoryProvider {
     async create(email: string, first_name: string, last_name: string, cv_url: string): Promise<void> {
-        this._prisma.candidate.create({
+        await this._prisma.candidate.create({
             data: {
                 email: email,
                 first_name: first_name,
