@@ -23,7 +23,7 @@ class PositionCreator implements IPositionCreator {
             throw msg;
         }
 
-        this._positionCreatorRepositoryProvider.create(name, description);
+        await this._positionCreatorRepositoryProvider.create(name, description);
     }
 
 }
