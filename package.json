@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "studio": "npx prisma studio",
+    "studio": "npx prisma studio -p 1241",
     "test": "jest"
   },
   "keywords": [],

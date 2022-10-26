@@ -8,23 +8,74 @@ describe("Candidate Creator Test Suite", () => {
     const candidateCreator = new CandidateCreator(logger, candidateCreatorRepositoryProvider);
 
     it("should throw because email is invalid", async () => {
-        expect(await candidateCreator.create("avivgmail.com", "Aviv", "Ben-Yosef", "www.mycvhost.com")).rejects.toThrow()
+        let success = true;
+        let message = ""
+
+        await candidateCreator.create("aviv&interactech.com", "Aviv", "Ben-Yosef", "http://www.mycv.com/")
+            .catch(e => {
+                message = e;
+                success = false;
+            })
+
+        expect(success).toBeFalsy();
+        expect(message).toEqual("Email is not valid!")
     });
 
     it("should throw because first name is invalid", async () => {
-        expect(
-            await candidateCreator.create("aviv@gmail.com", "", "Ben-Yosef", "www.mycvhost.com")).rejects.toThrow()
+        let success = true;
+        let message = ""
+
+        await candidateCreator.create("aviv@interactech.com", "", "Ben-Yosef", "http://www.mycv.com/")
+            .catch(e => {
+                message = e;
+                success = false;
+            })
+
+        expect(success).toBeFalsy();
+        expect(message).toEqual("First name is not valid!")
     });
 
     it("should throw because last name is invalid", async () => {
-        expect(await candidateCreator.create("aviv@gmail.com", "Aviv", "", "www.mycvhost.com")).rejects.toThrow()
+        let success = true;
+        let message = ""
+
+        await candidateCreator.create("aviv@interactech.com", "Aviv", "", "http://www.mycv.com/")
+            .catch(e => {
+                message = e;
+                success = false;
+            })
+
+        expect(success).toBeFalsy();
+        expect(message).toEqual("Last name is not valid!")
     });
 
     it("should throw because CV URL is invalid", async () => {
-        expect(await candidateCreator.create("aviv@gmail.com", "Aviv", "Ben-Yosef", "www#m#y#cvhost.com")).rejects.toThrow()
+        let success = true;
+        let message = ""
+
+        await candidateCreator.create("aviv@interactech.com", "Aviv", "Ben-Yosef", "httzp:/f/www.mycv.com/")
+            .catch(e => {
+                message = e;
+                success = false;
+            })
+
+        expect(success).toBeFalsy();
+        expect(message).toEqual("URL is not valid!")
     });
 
+    // Please note that this test could fail as there is an unique email constraint on the schema.
+    // As it is used to identify candidate and assign multiple positions to him.
     it("should create a record", async () => {
-        expect(await candidateCreator.create("aviv@interactech.com", "Aviv", "Ben-Yosef", "https://stackoverflow.com/")).not.toThrow()
+        let success = true;
+        let message = ""
+
+        await candidateCreator.create("aviv@interactech.com", "Aviv", "Ben-Yosef", "http://www.mycv.com/")
+            .catch(e => {
+                message = e;
+                success = false;
+            })
+
+        expect(success).toBeTruthy();
+        expect(message).toEqual("");
     })
 })
