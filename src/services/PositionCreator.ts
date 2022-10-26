@@ -16,9 +16,9 @@ class PositionCreator implements IPositionCreator {
             this._logger.error({}, msg)
             throw msg;
         }
-        
+
         if (description.length < 1) {
-            const msg = "Name is not valid!";
+            const msg = "Description is not valid!";
             this._logger.error({}, msg)
             throw msg;
         }
