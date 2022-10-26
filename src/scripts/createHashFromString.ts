@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import argon2 from "argon2";
+import * as argon2 from "@node-rs/argon2";
 async function createHashFromString(str: string) {
     const result = {
         salt: "",
@@ -7,7 +7,7 @@ async function createHashFromString(str: string) {
     }
 
     const salt = crypto.randomBytes(16);
-    result.hash = await argon2.hash(str, {salt: salt});
+    result.hash = await argon2.hash(str, { secret: salt });
     result.salt = salt.toString("base64");
 
     return result;
