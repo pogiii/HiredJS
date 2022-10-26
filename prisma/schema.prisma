@@ -26,7 +26,7 @@ model Candidate {
   last_name String
   cv_url String
   status Int
-  applied_positions Position[]
+  applied_positions CandidatesOnPositions[]
 }
 
 model Position {
@@ -34,5 +34,14 @@ model Position {
   status Int
   name String
   description String
-  applicants Candidate[]
+  applied_candidates CandidatesOnPositions[]
+}
+
+model CandidatesOnPositions {
+  position Position @relation(fields: [positionId], references: [id])
+  positionId Int
+  candidate Candidate @relation(fields: [candidateId], references: [id])
+  candidateId Int
+
+  @@id([positionId, candidateId])
 }

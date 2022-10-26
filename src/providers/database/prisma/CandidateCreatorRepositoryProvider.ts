@@ -11,7 +11,7 @@ class CandidateCreatorRepositoryProvider extends BaseRepositoryProvider implemen
                 cv_url: cv_url,
                 status: 0
             }
-        })
+        });
     };
 }
 

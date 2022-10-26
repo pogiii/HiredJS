@@ -6,7 +6,7 @@ type Position = {
   status: PositionStatuses;
   name: string
   description: string
-  applicants: Candidate[] | number
+  applied_candidates?: unknown[] | number
 };
 
 export { Position }

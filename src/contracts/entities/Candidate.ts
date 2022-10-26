@@ -8,7 +8,7 @@ type Candidate = {
     last_name: string
     cv_url: string
     status: CandidateStatuses
-    applied_positions: Position[] | number
+    applied_positions?: unknown[]
 }
 
 export { Candidate }
