@@ -10,6 +10,10 @@ class CandidateGetterRepositoryProvider extends BaseRepositoryProvider implement
         })
     }
 
+    async getAll(): Promise<Array<Candidate | null>> {
+        return await this._prisma.candidate.findMany();
+    }
+
 }
 
 export { CandidateGetterRepositoryProvider }
