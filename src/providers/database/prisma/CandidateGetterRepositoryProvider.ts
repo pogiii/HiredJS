@@ -14,6 +14,11 @@ class CandidateGetterRepositoryProvider extends BaseRepositoryProvider implement
         return await this._prisma.candidate.findMany();
     }
 
+    async getByEmail(email: string): Promise<Candidate | null> {
+        return await this._prisma.candidate.findUnique({
+            where: { email: email }
+        });
+    }
 }
 
 export { CandidateGetterRepositoryProvider }
