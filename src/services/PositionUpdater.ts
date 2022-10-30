@@ -16,19 +16,19 @@ class PositionUpdater implements IPositionUpdater {
     async update(id: number, options: { status?: PositionStatuses | undefined; name?: string | undefined; description?: string | undefined; }): Promise<void> {
         
         if (Object.keys(options).length === 0) {
-            const msg = "Options cannot be empty";
+            const msg = "Options cannot be empty!";
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options.name?.length == 0) {
-            const msg = "Position mame is not valid";
+            const msg = "Position name is not valid!";
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options.description?.length == 0) {
-            const msg = "Position description is not valid";
+            const msg = "Position description is not valid!";
             this._logger.error({}, msg);
             throw msg;
         }

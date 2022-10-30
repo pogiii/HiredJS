@@ -133,9 +133,6 @@ describe("User Updater Test Suite", () => {
         expect(fetchedUser?.salt).not.toEqual(user.salt);
         expect(fetchedUser?.password_hash).not.toEqual(user.password_hash);
 
-        console.log(fetchedUser);
-        console.log(user);
-
     });
 
     afterAll(async () => {
