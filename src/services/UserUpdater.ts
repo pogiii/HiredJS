@@ -17,31 +17,31 @@ class UserUpdater implements IUserUpdater {
     async update(id: number, options: { email?: string | undefined; first_name?: string | undefined; last_name?: string | undefined; password?: string | undefined}): Promise<void> {
         
         if (Object.keys(options).length === 0) {
-            const msg = "Options object cannot be empty";
+            const msg = "Options object cannot be empty!";
             this._logger.error({}, msg);
             throw msg;
         }
 
-        if (options?.email && (options.email.length < 1 || validateEmail(options.email))) {
-            const msg = "Email is not valid";
+        if (options?.email && (!validateEmail(options.email) || options.email.length < 1)) {
+            const msg = "Email is not valid!";
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options?.first_name?.length == 0) {
-            const msg = "First name is not valid"
+            const msg = "First name is not valid!"
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options?.last_name?.length == 0) {
-            const msg = "Last name is not valid"
+            const msg = "Last name is not valid!"
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options?.password && options.password.length < 8) {
-            const msg = "Pasword is not valid"
+            const msg = "Password is not valid!"
             this._logger.error({}, msg);
             throw msg;
         }
