@@ -25,7 +25,7 @@ class CandidateGetter implements ICandidateGetter {
     async getAll(): Promise<(Candidate | null)[]> {
         return await this._candidateGetterRepositoryProvider.getAll()
             .catch(e => {
-                this._logger.error(e.message ?? e, "Could not get canddiate");
+                this._logger.error(e.message ?? e, "Could not get canddiates");
                 return [null];
             })
     }
@@ -38,6 +38,10 @@ class CandidateGetter implements ICandidateGetter {
         }
 
         return await this._candidateGetterRepositoryProvider.getByEmail(email)
+            .catch(e => {
+                this._logger.error(e.message ?? e, "Could not get canddiate");
+                return null;
+            })
     }
 
 }
