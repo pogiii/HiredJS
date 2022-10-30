@@ -3,7 +3,9 @@ import { CandidateCreatorRepositoryProvider } from '../../src/providers/database
 import pino from "pino"
 describe("Candidate Creator Test Suite", () => {
 
-    const logger = pino();
+    const logger = pino({
+        level: "silent"
+    })
     const candidateCreatorRepositoryProvider = new CandidateCreatorRepositoryProvider();
     const candidateCreator = new CandidateCreator(logger, candidateCreatorRepositoryProvider);
 

@@ -3,7 +3,9 @@ import { CandidateGetterRepositoryProvider } from "../../src/providers/database/
 import { CandidateGetter } from "../../src/services/CandidateGetter";
 
 describe("Candidate Getter Test Suite", () => {
-    const logger = pino()
+    const logger = pino({
+        level: "silent"
+    })
     const candidateGetterRepositoryProvider = new CandidateGetterRepositoryProvider();
     const candidateGetter = new CandidateGetter(logger, candidateGetterRepositoryProvider);
 

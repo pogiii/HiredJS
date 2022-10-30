@@ -4,7 +4,7 @@ import { IPositionDeleterRepositoryProvider } from "../../../contracts/interface
 class PositionDeleterRepositoryProvider extends BaseRepositoryProvider implements IPositionDeleterRepositoryProvider {
     
     async delete(id: number): Promise<void> {
-        this._prisma.position.delete({
+        await this._prisma.position.delete({
             where: {
                 id: id
             }

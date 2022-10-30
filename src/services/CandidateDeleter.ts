@@ -12,7 +12,7 @@ class CandidateDeleter implements ICandidateDeleter {
     }
 
     async delete(id: number): Promise<void> {
-        this._candidateDeleterRepositoryProvider.delete(id)
+        await this._candidateDeleterRepositoryProvider.delete(id)
         .catch(e => {
             this._logger.error(e.message ?? e, "Could not delete candidate");
         })

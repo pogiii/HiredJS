@@ -4,7 +4,7 @@ import { ICandidateDeleterRepositoryProvider } from "../../../contracts/interfac
 class CandidateDeleterRepositoryProvider extends BaseRepositoryProvider implements ICandidateDeleterRepositoryProvider {
     
     async delete(id: number): Promise<void> {
-        this._prisma.candidate.delete({
+        await this._prisma.candidate.delete({
             where: {
                 id: id
             }

@@ -5,7 +5,9 @@ import { PositionGetter } from "../../src/services/PositionGetter"
 
 describe("Position Getter Test Suite", () => {
 
-    const logger = pino()
+    const logger = pino({
+        level: "silent"
+    })
     const positionGetterRepositoryProvider = new PositionGetterRepositoryProvider()
     const positionGetter = new PositionGetter(logger, positionGetterRepositoryProvider)
 

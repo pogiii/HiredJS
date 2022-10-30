@@ -3,7 +3,9 @@ import { PositionCreatorRepositoryProvider } from '../../src/providers/database/
 import pino from "pino"
 describe("Position Creator Test Suite", () => {
 
-    const logger = pino();
+    const logger = pino({
+        level: "silent"
+    })
     const positionCreatorRepositoryProvider = new PositionCreatorRepositoryProvider();
     const positionCreator = new PositionCreator(logger, positionCreatorRepositoryProvider);
 

@@ -3,7 +3,9 @@ import { UserCreatorRepositoryProvider } from '../../src/providers/database/pris
 import pino from "pino"
 describe("User Creator Test Suite", () => {
 
-    const logger = pino();
+    const logger = pino({
+        level: "silent"
+    })
     const userCreatorRepositoryProvider = new UserCreatorRepositoryProvider();
     const userCreator = new UserCreator(logger, userCreatorRepositoryProvider);
 

@@ -12,7 +12,7 @@ class PositionDeleter implements IPositionDeleter {
     }
 
     async delete(id: number): Promise<void> {
-        this._positionDeleterRepositoryProvider.delete(id)
+        await this._positionDeleterRepositoryProvider.delete(id)
         .catch(e => {
             this._logger.error(e.message ?? e, "Could not delete position");
         })

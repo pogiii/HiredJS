@@ -5,7 +5,9 @@ import { UserGetter } from "../../src/services/UserGetter";
 
 describe("User Getter Test Suite", () => {
 
-    const logger = pino();
+    const logger = pino({
+        level: "silent"
+    })
     const userGetterRepositoryProvider = new UserGetterRepositoryProvider()
     const userGetter = new UserGetter(logger, userGetterRepositoryProvider);
 

@@ -4,7 +4,7 @@ import { IUserDeleterRepositoryProvider } from "../../../contracts/interfaces/IU
 class UserDeleterRepositoryProvider extends BaseRepositoryProvider implements IUserDeleterRepositoryProvider {
     
     async delete(id: number): Promise<void> {
-        this._prisma.user.delete({
+        await this._prisma.user.delete({
             where: {
                 id: id
             }

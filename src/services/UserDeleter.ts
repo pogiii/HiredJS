@@ -12,7 +12,7 @@ class UserDeleter implements IUserDeleter {
     }
 
     async delete(id: number): Promise<void> {
-        this._userDeleterRepositoryProvider.delete(id)
+        await this._userDeleterRepositoryProvider.delete(id)
         .catch(e => {
             this._logger.error(e.message ?? e, "Could not delete user");
         })
