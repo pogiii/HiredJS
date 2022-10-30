@@ -18,19 +18,19 @@ class CandidateUpdater implements ICandidateUpdater {
     async update(id: number, options: { email?: string | undefined; first_name?: string | undefined; last_name?: string | undefined; cv_url?: string | undefined; status?: CandidateStatuses | undefined; }): Promise<void> {
         
         if (Object.keys(options).length == 0) {
-            const msg = "Options object cannot be empty.";
+            const msg = "Options object cannot be empty!";
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options?.first_name?.length == 0) {
-            const msg = "First name is not valid.";
+            const msg = "First name is not valid!";
             this._logger.error({}, msg);
             throw msg;
         }
 
         if (options?.last_name?.length == 0) {
-            const msg = "Last name is not valid.";
+            const msg = "Last name is not valid!";
             this._logger.error({}, msg);
             throw msg;
         }
