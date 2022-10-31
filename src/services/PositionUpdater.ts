@@ -33,7 +33,7 @@ class PositionUpdater implements IPositionUpdater {
             throw msg;
         }
 
-        this._positionUpdaterRepositoryProvider.update(id, options)
+        await this._positionUpdaterRepositoryProvider.update(id, options)
         .catch(e => {
             this._logger.error(e, e.message ?? "Could not update position");
             throw e;

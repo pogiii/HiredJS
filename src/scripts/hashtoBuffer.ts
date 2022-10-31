@@ -1,5 +1,5 @@
-function hashtoBuffer(hash, salt) {
+function hashToBuffer(hash: string, salt: string): Buffer {
     return Buffer.from(salt, 'base64');
 }
 
-export { hashtoBuffer };
+export { hashToBuffer };
