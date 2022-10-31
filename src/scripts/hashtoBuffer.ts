@@ -1,4 +1,4 @@
-function hashToBuffer(hash: string, salt: string): Buffer {
+function hashToBuffer(salt: string): Buffer {
     return Buffer.from(salt, 'base64');
 }
 
