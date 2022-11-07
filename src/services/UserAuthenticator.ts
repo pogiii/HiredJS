@@ -1,7 +1,7 @@
 import { IUserAuthenticator } from "../contracts/interfaces/IAuthenticateUser";
 import { IUserGetter } from "../contracts/interfaces/IUserGetter";
 import { hashToBuffer } from "../scripts/hashtoBuffer"
-import { createHashFromString } from "../scripts/createHashFromString"
+import * as argon2 from "@node-rs/argon2";
 import { Logger } from "pino"
 class UserAuthenticator implements IUserAuthenticator {
 
@@ -15,7 +15,7 @@ class UserAuthenticator implements IUserAuthenticator {
 
     }
 
-    async authenticate(email, password): Promise<{ refresh_token?: string; access_token?: string;}> {
+    async authenticate(email: string, password: string): Promise<{ refresh_token?: string; access_token?: string;}> {
 
         let msg: string;
 
@@ -28,16 +28,22 @@ class UserAuthenticator implements IUserAuthenticator {
         }
 
         // If user exists check if password matches using a hash.
-        const secret = hashToBuffer(user.salt);
-        const hashed = await createHashFromString(password, secret);
+        // const secret = hashToBuffer(user.salt);
+        // const hashed = await createHashFromString(password, secret);
 
-        if (hashed.hash !== user.password_hash) {
-            msg = "User passwords does not match."
-            this._logger.error({email:email, saved: user.password_hash, received: hashed.hash}, msg);
-            throw msg;
+        // if (hashed.hash !== user.password_hash) {
+        //     msg = "User passwords does not match."
+        //     this._logger.error({email:email, saved: user.password_hash, received: hashed.hash}, msg);
+        //     throw msg;
+        // }
+
+        const isOK = await argon2.verify(user.password_hash, password, {secret: hashToBuffer(user.salt)});
+
+        if (isOK) {
+        // TODO: intergrate with JWT.
         }
 
-        // TODO: intergrate with JWT.
+
         return {};
     }
 
