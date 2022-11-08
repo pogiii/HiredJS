@@ -3,6 +3,7 @@ import { IUserGetter } from "../contracts/interfaces/IUserGetter";
 import { hashToBuffer } from "../scripts/hashtoBuffer"
 import * as argon2 from "@node-rs/argon2";
 import { Logger } from "pino"
+import * as jose from "jose";
 class UserAuthenticator implements IUserAuthenticator {
 
     private readonly _logger: Logger
@@ -37,10 +38,13 @@ class UserAuthenticator implements IUserAuthenticator {
         //     throw msg;
         // }
 
+        // Verify user password.
         const isOK = await argon2.verify(user.password_hash, password, {secret: hashToBuffer(user.salt)});
 
         if (isOK) {
         // TODO: intergrate with JWT.
+
+
         }
 
 
