@@ -7,6 +7,7 @@ type User = {
     last_name: string;
     password_hash: string;
     salt: string;
+    refresh_token: string;
 };
 
 export { User }

@@ -4,9 +4,7 @@ import { Request } from "../contracts/entities/Request";
 function authenticateToken(req: Request, res: express.Response, next: express.NextFunction) {
 
     const accessSecret = process.env.JWT_ACCESS_SECRET;
-    const refreshSecret = process.env.JWT_REFRESH_SECRET;
-
-    if (typeof accessSecret !== "string" || typeof refreshSecret !== "string") {
+    if (typeof accessSecret !== "string") {
         const msg = "Access Secret and/or refresh secrets are not defined.\nAre you sure your env file is correct?";
         throw msg;
     }

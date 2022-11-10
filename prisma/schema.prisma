@@ -17,6 +17,7 @@ model User {
   last_name String
   password_hash String
   salt String
+  refresh_token String
 }
 
 model Candidate {
